@@ -1,6 +1,8 @@
 import { ArrowPathIcon } from "@heroicons/react/24/outline";
 
-type Food = {
+// add serving type grams, item, ml etc
+
+export type Food = {
   food: string;
   amount: number;
   protein: number;
@@ -9,7 +11,7 @@ type Food = {
   calories: number;
 };
 
-const foods: Food[] = [
+export const foods: Food[] = [
   {
     food: "Chicken Breast",
     amount: 100,

@@ -1,13 +1,11 @@
 import Dashboard from "@/components/layout";
-import Table from "@/components/table";
+import Settings from "@/components/settings";
 import React from "react";
 
 const index = () => {
   return (
     <Dashboard>
-      <Table />
-      <Table />
-      <Table />
+      <Settings />
     </Dashboard>
   );
 };

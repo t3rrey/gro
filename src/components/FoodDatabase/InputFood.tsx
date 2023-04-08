@@ -2,6 +2,7 @@ import { useState, ChangeEvent } from "react";
 import { PlusIcon } from "@heroicons/react/20/solid";
 import Input from "./Input";
 import { FoodItem } from "@/types";
+import Select from "./Select";
 
 const InputFood = () => {
   const [inputValues, setInputValues] = useState<FoodItem>({
@@ -30,10 +31,9 @@ const InputFood = () => {
               onChange={(e) => handleInputChange(e, "name")}
               value={inputValues.name}
             />
-            <Input
+            <Select
+              options={["Protien", "Fruit", "Wheat", "This is a test option"]}
               labelName="Category"
-              onChange={(e) => handleInputChange(e, "category")}
-              value={inputValues.category}
             />
             <Input
               labelName="Brand"

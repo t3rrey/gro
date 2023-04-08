@@ -6,3 +6,5 @@ export type FoodItem = {
   fats: string;
   category: string;
 };
+
+export type FoodCategories = "protein" | "fruit" | "vegetable";

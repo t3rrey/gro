@@ -1,12 +1,10 @@
 import { Auth, ThemeSupa } from "@supabase/auth-ui-react";
 import { useSession, useSupabaseClient } from "@supabase/auth-helpers-react";
 import Dashboard from "@/components/layout";
-import Table from "@/components/table";
 
 const Home = () => {
   const session = useSession();
   const supabase = useSupabaseClient();
-
   return (
     <div>
       {!session ? (
@@ -18,11 +16,7 @@ const Home = () => {
         />
       ) : (
         <>
-          <div className="h-full bg-gray-100">
-            <div className="h-full">
-              <Dashboard></Dashboard>
-            </div>
-          </div>
+          <Dashboard></Dashboard>
         </>
       )}
     </div>

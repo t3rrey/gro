@@ -1,8 +1,8 @@
 export type FoodItem = {
-  Name: string;
-  Brand: string;
-  Protien: string;
-  Carbs: string;
-  Fats: string;
-  Category: string;
+  name: string;
+  brand: string;
+  protein: string;
+  carbs: string;
+  fats: string;
+  category: string;
 };

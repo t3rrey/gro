@@ -1,9 +1,9 @@
-import InputFood from "./InputFood";
+import InputFoodCard from "./InputFoodCard";
 
 const FoodDatabase = () => {
   return (
     <div>
-      <InputFood />
+      <InputFoodCard />
     </div>
   );
 };

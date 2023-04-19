@@ -1,26 +1,11 @@
-import { Auth, ThemeSupa } from "@supabase/auth-ui-react";
-import { useSession, useSupabaseClient } from "@supabase/auth-helpers-react";
-import Dashboard from "@/components/layout";
+import FoodTable from "@/components/FoodTable";
 
-const Home = () => {
-  const session = useSession();
-  const supabase = useSupabaseClient();
+const index = () => {
   return (
     <div>
-      {!session ? (
-        <Auth
-          theme="light"
-          supabaseClient={supabase}
-          appearance={{ theme: ThemeSupa }}
-          providers={["google", "facebook", "twitter"]}
-        />
-      ) : (
-        <>
-          <Dashboard></Dashboard>
-        </>
-      )}
+      <FoodTable />
     </div>
   );
 };
 
-export default Home;
+export default index;

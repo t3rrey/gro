@@ -2,11 +2,13 @@ import { supabase } from "@/lib/supabase";
 import { FoodItem } from "@/lib/types";
 import { useEffect, useState } from "react";
 import { SkeletonLoader } from "../shared/SkeletonLoader";
+import AddFoodCard from "./AddFoodCard";
 
 export default function FoodTable() {
   const [food, setFood] = useState<FoodItem[]>([]);
   const [editingRow, setEditingRow] = useState<number | null>(null);
   const [loading, setLoading] = useState(true);
+  const [addingNewRow, setAddingNewRow] = useState(false);
 
   const toggleEditing = (index: number) => {
     if (editingRow === index) {
@@ -14,6 +16,10 @@ export default function FoodTable() {
     } else {
       setEditingRow(index);
     }
+  };
+
+  const cancelEditing = () => {
+    setEditingRow(null);
   };
 
   const handleSubmit = async (e: any, id: number) => {
@@ -54,22 +60,24 @@ export default function FoodTable() {
     fetchFood();
   }, []);
   return (
-    <div className="px-4 sm:px-6 lg:px-8">
+    <div className="p-4 sm:px-6 lg:px-8 bg-white">
       <div className="sm:flex sm:items-center">
         <div className="sm:flex-auto">
           <h1 className="text-base font-semibold leading-6 text-gray-900">
             Foods
           </h1>
         </div>
-        <div className="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
+        <div className="hidden md:block mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
           <button
             type="button"
             className="block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+            onClick={() => setAddingNewRow(!addingNewRow)}
           >
-            Add user
+            Add food
           </button>
         </div>
       </div>
+      {addingNewRow ? <AddFoodCard /> : null}
       <div className="mt-8 flow-root">
         <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
           <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
@@ -116,7 +124,7 @@ export default function FoodTable() {
                           <input
                             defaultValue={f.name}
                             name="name"
-                            className="w-full"
+                            className="w-full bg-gray-200 py-2 rounded-md pl-2"
                           />
                         ) : (
                           f.name
@@ -127,7 +135,7 @@ export default function FoodTable() {
                           <input
                             defaultValue={f.protein}
                             name="protein"
-                            className="w-full"
+                            className="w-full bg-gray-200 py-2 rounded-md pl-2"
                           />
                         ) : (
                           f.protein.toString()
@@ -138,7 +146,7 @@ export default function FoodTable() {
                           <input
                             defaultValue={f.carbs}
                             name="carbs"
-                            className="w-full"
+                            className="w-full bg-gray-200 py-2 rounded-md pl-2"
                           />
                         ) : (
                           f.carbs.toString()
@@ -149,7 +157,7 @@ export default function FoodTable() {
                           <input
                             defaultValue={f.fats}
                             name="fats"
-                            className="w-full"
+                            className="w-full bg-gray-200 py-2 rounded-md pl-2"
                           />
                         ) : (
                           f.fats.toString()
@@ -157,12 +165,20 @@ export default function FoodTable() {
                       </td>
                       <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
                         {editingRow === idx ? (
-                          <button
-                            onClick={(e) => handleSubmit(e, f.id)}
-                            className="text-indigo-600 hover:text-indigo-900"
-                          >
-                            Submit
-                          </button>
+                          <>
+                            <button
+                              onClick={cancelEditing}
+                              className="text-white p-1 bg-red-600 rounded-md mx-1"
+                            >
+                              Cancel
+                            </button>
+                            <button
+                              onClick={(e) => handleSubmit(e, f.id)}
+                              className="text-white p-1 bg-indigo-600 rounded-md mx-1"
+                            >
+                              Submit
+                            </button>
+                          </>
                         ) : (
                           <button
                             onClick={() => toggleEditing(idx)}

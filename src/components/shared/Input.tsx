@@ -7,7 +7,7 @@ export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 
 const Input: FC<InputProps> = ({ labelName, ...props }) => {
   return (
-    <div className="relative">
+    <div className="relative ">
       <label
         htmlFor={props.id || props.name}
         className="absolute -top-2 left-2 inline-block bg-white px-1 text-xs font-medium text-gray-900"

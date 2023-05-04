@@ -2,6 +2,7 @@ import { SessionContextProvider, Session } from "@supabase/auth-helpers-react";
 import { AppProps } from "next/app";
 import "./globals.css";
 import { supabase } from "@/lib/supabase";
+import Layout from "@/components/layout";
 
 function MyApp({
   Component,
@@ -16,7 +17,9 @@ function MyApp({
     >
       <div className="h-screen bg-gray-100">
         <div className="h-full">
-          <Component {...pageProps} />
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
         </div>
       </div>
     </SessionContextProvider>

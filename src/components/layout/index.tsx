@@ -11,7 +11,6 @@ import {
   FireIcon,
   DocumentChartBarIcon,
 } from "@heroicons/react/24/outline";
-import Image from "next/image";
 import GroLogo from "../logo";
 
 const navigation = [
@@ -39,10 +38,10 @@ function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
 }
 
-export interface DashboardProps {
+export interface LayoutProps {
   children?: React.ReactNode;
 }
-const Dashboard: FC<DashboardProps> = ({ children }) => {
+const Layout: FC<LayoutProps> = ({ children }) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
@@ -254,4 +253,4 @@ const Dashboard: FC<DashboardProps> = ({ children }) => {
   );
 };
 
-export default Dashboard;
+export default Layout;

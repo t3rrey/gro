@@ -2,90 +2,33 @@ export type FoodItem = {
   id: number;
   name: string;
   brand?: string;
-  category?: string;
+  category?: "meat" | "snack" | "drink";
   protein: number;
   carbs: number;
   fats: number;
+  calories: number;
 };
 
-export type Json =
-  | string
-  | number
-  | boolean
-  | null
-  | { [key: string]: Json }
-  | Json[];
+export type MealPlanFoodITem = {
+  foodItem: FoodItem;
+  quantity: number;
+};
 
-export interface Database {
-  public: {
-    Tables: {
-      client: {
-        Row: {
-          created_at: string | null;
-          email: string | null;
-          firstName: string | null;
-          id: number;
-          lastName: string | null;
-        };
-        Insert: {
-          created_at?: string | null;
-          email?: string | null;
-          firstName?: string | null;
-          id?: number;
-          lastName?: string | null;
-        };
-        Update: {
-          created_at?: string | null;
-          email?: string | null;
-          firstName?: string | null;
-          id?: number;
-          lastName?: string | null;
-        };
-      };
-      food: {
-        Row: {
-          brand: string | null;
-          carbs: number | null;
-          category: string | null;
-          created_at: string | null;
-          fats: number | null;
-          id: number;
-          name: string | null;
-          protein: number | null;
-        };
-        Insert: {
-          brand?: string | null;
-          carbs?: number | null;
-          category?: string | null;
-          created_at?: string | null;
-          fats?: number | null;
-          id?: number;
-          name?: string | null;
-          protein?: number | null;
-        };
-        Update: {
-          brand?: string | null;
-          carbs?: number | null;
-          category?: string | null;
-          created_at?: string | null;
-          fats?: number | null;
-          id?: number;
-          name?: string | null;
-          protein?: number | null;
-        };
-      };
-    };
-    Views: {
-      [_ in never]: never;
-    };
-    Functions: {
-      [_ in never]: never;
-    };
-    Enums: {
-      [_ in never]: never;
-    };
-    CompositeTypes: {
-      [_ in never]: never;
-    };
-  };
-}
+export type Meal = {
+  id: number;
+  name: string;
+  description: string;
+  foods: MealPlanFoodITem[];
+};
+
+export type MealPlan = {
+  id: number;
+  trainer_id: number;
+  client_id: number;
+  name: string;
+  description: string;
+  meals: Meal[];
+};
+
+
+

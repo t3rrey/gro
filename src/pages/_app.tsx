@@ -3,6 +3,7 @@ import { AppProps } from "next/app";
 import "./globals.css";
 import { supabase } from "@/lib/supabase";
 import Layout from "@/components/layout";
+import { Analytics } from "@vercel/analytics/react";
 
 function MyApp({
   Component,
@@ -22,6 +23,7 @@ function MyApp({
           </Layout>
         </div>
       </div>
+      <Analytics />
     </SessionContextProvider>
   );
 }

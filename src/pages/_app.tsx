@@ -16,13 +16,7 @@ function MyApp({
       supabaseClient={supabase}
       initialSession={pageProps.initialSession}
     >
-      <div className="h-screen bg-gray-100">
-        <div className="h-full">
-          <Layout>
-            <Component {...pageProps} />
-          </Layout>
-        </div>
-      </div>
+      <Layout>{/* <Component {...pageProps} /> */}</Layout>
       <Analytics />
     </SessionContextProvider>
   );

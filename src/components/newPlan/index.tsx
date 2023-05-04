@@ -7,14 +7,13 @@ import useDebounce from "@/lib/hooks/useDebounce";
 const SearchFood: FC = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState<FoodItem[]>([]);
-  const debouncedSearchTerm: string = useDebounce<string>(searchTerm, 200);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(event.target.value);
   };
 
   const search = async () => {
-    if (!debouncedSearchTerm) {
+    if (!searchTerm) {
       setSearchResults([]);
       return;
     }
@@ -22,7 +21,7 @@ const SearchFood: FC = () => {
     const { data, error } = await supabase
       .from("food")
       .select("*")
-      .ilike("name", `%${debouncedSearchTerm}%`);
+      .ilike("name", `%${searchTerm}%`);
 
     if (error) {
       console.error("Error searching:", error);
@@ -34,7 +33,7 @@ const SearchFood: FC = () => {
 
   useEffect(() => {
     search();
-  }, [debouncedSearchTerm]);
+  }, [searchTerm]);
 
   return (
     <div className="border border-gray-300 flex bg-white rounded-lg flex-col">
